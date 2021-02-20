@@ -3,6 +3,7 @@ package com.pavelpotapov.toolsshop;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -34,7 +35,12 @@ public class ListOfItemsActivity extends AppCompatActivity {
         listViewItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                Item item = items.get(position);
+                Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
+                intent.putExtra("title", item.getTitle());
+                intent.putExtra("info", item.getInfo());
+                intent.putExtra("resId", item.getImageResourceId());
+                startActivity(intent);
             }
         });
     }
